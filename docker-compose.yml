@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  flask01:
+    build: .
+    command: >
+      gunicorn -b 0.0.0.0:8000
+      --acces-logfile -
+      --reload
+      "flask01.app:create_app()"
+    environment:
+      PYTHONUNBUFFERED: 'true'
+    volumes:
+      - '.:/flask01'
+    ports:
+      - '8000:8000'
